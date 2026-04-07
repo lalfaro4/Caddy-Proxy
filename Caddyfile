@@ -3,7 +3,6 @@
 }
 
 :{$PORT:8080} {
+    respond / "proxy is alive"
     reverse_proxy /api/* {$BACKEND_DOMAIN}:{$BACKEND_PORT}
-    reverse_proxy /compare/* {$COMPARE_DOMAIN}:{$COMPARE_PORT}
-    reverse_proxy {$FRONTEND_DOMAIN}:{$FRONTEND_PORT}
 }
