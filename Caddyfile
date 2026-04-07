@@ -3,15 +3,7 @@
 }
 
 :{$PORT:8080} {
-    handle /api/* {
-        reverse_proxy http://${BACKEND_DOMAIN}:${BACKEND_PORT}
-    }
-
-    handle /compare/* {
-        reverse_proxy http://${COMPARE_DOMAIN}:${COMPARE_PORT}
-    }
-
-    handle {
-        reverse_proxy http://${FRONTEND_DOMAIN}:${FRONTEND_PORT}
-    }
+    reverse_proxy /api/* {$BACKEND_DOMAIN}:{$BACKEND_PORT}
+    reverse_proxy /compare/* {$COMPARE_DOMAIN}:{$COMPARE_PORT}
+    reverse_proxy {$FRONTEND_DOMAIN}:{$FRONTEND_PORT}
 }
